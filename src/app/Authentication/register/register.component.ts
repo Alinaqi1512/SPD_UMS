@@ -18,8 +18,8 @@ enum Gender
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-service: any;
-
+// service: any;
+Gender:Gender;
 
   constructor(private userService:UserService, private route: ActivatedRoute, private router: Router) { }
 

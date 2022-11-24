@@ -9,13 +9,15 @@ import { ForgetpassComponent } from './Authentication/forgetpass/forgetpass.comp
 import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './shared/user.service';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    ForgetpassComponent
+    ForgetpassComponent,
+    HomeComponent
     
   ],
   imports: [
@@ -23,7 +25,7 @@ import { UserService } from './shared/user.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    // ReactiveFormsModule
   ],
   providers: [UserService],
   bootstrap: [AppComponent]

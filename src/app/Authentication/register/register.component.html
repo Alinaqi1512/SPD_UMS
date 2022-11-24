@@ -1,52 +1,71 @@
 <section class="form my-4 mx-5">
   <div class="container">
-      <div class="row no-gutters">
-          <div class="col-lg-5 wall">
-              <img src="/assets/img/lg_wall.jpg" alt="" class="img-fluid">
-          </div>
-          <div class="col-lg-7 px-5 pt-5">
-              <h1 class="font-weight-bold py-3">Speridian Technologies</h1>
-              <h4>Sign up</h4>
-              <form #f="ngForm" (ngSubmit)="onSubmit(f)" autocomplete="off">
-                  <div class="form-row">
-                      <div class="form-group col-md-6 pt-2">
-                          <input type="text" class="form-control"ngModel name="username" id="Username" placeholder="Username">
-                      </div>
-                    <div class="form-group col-md-6 pt-2">
-                      <input type="email" class="form-control" ngModel name="email" id="Email-Address" placeholder="Email-Address">
-                    </div>
-                    <div class="form-group col-md-6 pt-2">
-                      <input type="password" class="form-control" ngModel name="password" id="inputPassword4" placeholder="Password">
-                    </div>
-                    <div class="form-group col-md-6 pt-2">
-                      <input type="number" class="form-control" ngModel name="Gender" id="inputPassword4" placeholder="Gender ID">
-                    </div>
-                    <div class="form-group col-md-6 pt-2">
-                      <input type="text" class="form-control" ngModel name="PhoneNumber" id="inputPassword4" placeholder="Phone Number">
-                    </div>
-                  </div>
-                  <!-- <div class="form-check form-check-inline pt-2">
-                      <input class="form-check-input" type="radio" ngModel name="gender" id="inlineRadio1" value="option1">
-                      <label class="form-check-label" for="inlineRadio1">Male</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" ngModel name="gender" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">Female</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="radio" ngModel name="gender" id="inlineRadio2" value="option2">
-                      <label class="form-check-label" for="inlineRadio2">Other</label>
-                    </div> -->
-                    
-                  <div class="form-row">
-                      <div class="col-md-6">
-                          <button class="btn1 mt-3 mb-3" type="submit">Signup</button>
-                      </div>
-                  </div>
-                  <p class="pt-1">Already a user? <a routerLink="/login">Login</a></p>
-                </form>
-          </div>
+    <div class="row no-gutters">
+      <div class="col-lg-5 wall">
+        <img src="/assets/img/lg_wall.jpg" alt="" class="img-fluid">
       </div>
+      <div class="col-lg-7 px-5 pt-5">
+        <h1 class="font-weight-bold py-3">Speridian Technologies</h1>
+        <h4>Sign up</h4>
+        <form #f="ngForm" (ngSubmit)="onSubmit(f)" autocomplete="off">
+          <div class="form-row">
+            <div class="form-group col-md-6 pt-2">
+              <input type="text" class="form-control" ngModel minlength="6" maxlength="20" name="username" id="Username" placeholder="Username"
+                required #username="ngModel">
+              <span class="help-block text-danger" *ngIf="!username.valid && username.touched">Please enter a valid
+                Username!</span>
+            </div>
+            <div class="form-group col-md-6 pt-2">
+              <input type="email" class="form-control" ngModel name="email" id="Email-Address"
+                placeholder="Email-Address" required #email="ngModel">
+              <span class="help-block text-danger" *ngIf="!email.valid && email.touched">Please enter a valid Email!</span>
+
+            </div>
+            <div class="form-group col-md-6 pt-2">
+              <input type="password" class="form-control" ngModel name="password" id="inputPassword4"
+                placeholder="Password" required #password="ngModel">
+              <span class="help-block text-danger" *ngIf="!password.valid && password.touched">Please enter a valid Password!</span>
+
+              <div id="passwordHelpBlock" *ngIf="!password.valid && password.touched" class="form-text text-danger">
+                Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces,
+                special characters!
+              </div>
+            </div>
+            <!-- <div class="form-group col-md-6 pt-2">
+                      <input type="number" class="form-control" ngModel name="Gender" id="inputPassword4" placeholder="Gender ID">
+                    </div> -->
+            <div class="form-group col-md-6 pt-2">
+              <input type="text" class="form-control" ngModel name="PhoneNumber" id="inputPassword4"
+                placeholder="Phone Number" required pattern="^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})" #phone="ngModel">
+                <span class="help-block text-danger" *ngIf="!phone.valid && phone.touched">Please enter a valid Phone Number!</span>
+
+              <div id="passwordHelpBlock" *ngIf="!phone.valid && phone.touched" class="form-text text-danger">
+                Your phoneNumber must be start from +923*******!!! 
+              </div>
+            </div>
+          </div>
+          <div class="form-check form-check-inline pt-2">
+            <input class="form-check-input" type="radio" ngModel name="Gender" id="inlineRadio1" [value]=1>
+            <label class="form-check-label" for="inlineRadio1">Male</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" ngModel name="Gender" id="inlineRadio2" [value]=2>
+            <label class="form-check-label" for="inlineRadio2">Female</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" ngModel name="Gender" id="inlineRadio2" [value]=3>
+            <label class="form-check-label" for="inlineRadio2">Other</label>
+          </div>
+
+          <div class="form-row">
+            <div class="col-md-6">
+              <button class="btn1 mt-3 mb-3" style="cursor: pointer;" type="submit" [disabled]="!f.valid">Signup</button>
+            </div>
+          </div>
+          <p class="pt-1">Already a user? <a routerLink="/login">Login</a></p>
+        </form>
+      </div>
+    </div>
   </div>
 </section>
 
